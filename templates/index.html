@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minecraft Server Control</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Minecraft Server Control</h1>
+
+        <div class="console">
+            <h2>Server Console</h2>
+            <div id="console-output">
+                <p>Status: {{ status }}</p>
+            </div>
+        </div>
+
+        <div class="buttons">
+            {% if status == 'stopped' %}
+                <form action="{{ url_for('start_server') }}" method="POST">
+                    <button type="submit" class="btn btn-start">Start Server</button>
+                </form>
+            {% else %}
+                <form action="{{ url_for('stop_server') }}" method="POST">
+                    <button type="submit" class="btn btn-stop">Stop Server</button>
+                </form>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>
